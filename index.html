@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>pawslyy</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+
+  body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: url("background.jpg") no-repeat center/cover;
+  }
+
+  /* 🌧️ Cute rain layer */
+  .rain{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+  }
+
+  .drop{
+    position:absolute;
+    top:-20vh;
+    width:10px;
+    height:14px;
+    border-radius: 999px 999px 999px 999px;
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 0 12px rgba(255, 200, 220, 0.25);
+    filter: blur(0.2px);
+    animation: fall linear infinite;
+  }
+
+  /* tiny highlight inside drop */
+  .drop::after{
+    content:"";
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:3px;
+    height:4px;
+    border-radius:999px;
+    background: rgba(255,255,255,0.55);
+  }
+
+  @keyframes fall{
+    to { transform: translateY(130vh); }
+  }
+
+  /* 🌸 BIGGER glass card */
+  .card{
+    width: 540px;          /* bigger */
+    padding: 42px;         /* bigger */
+    border-radius: 22px;
+    text-align:center;
+
+    background: rgba(255, 220, 230, 0.58);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 28px 55px rgba(0,0,0,0.18);
+
+    z-index:2;
+  }
+
+  .pfp{
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+
+  .name{
+    font-size: 28px;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .spark{
+    color:white;
+    letter-spacing:6px;
+    margin-bottom: 22px;
+    opacity: 0.95;
+  }
+
+  .icons{
+    display:flex;
+    justify-content:center;
+    gap: 26px;
+  }
+
+  .icons a{
+    width: 44px;
+    height: 44px;
+    display:grid;
+    place-items:center;
+    border-radius: 999px;
+    text-decoration:none;
+
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.18);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .icons a i{
+    color:white;
+    font-size: 20px;
+  }
+
+  .icons a:hover{
+    transform: scale(1.12);
+    background: rgba(255,255,255,0.22);
+  }
+</style>
+</head>
+
+<body>
+
+<!-- 🌧️ Rain -->
+<div class="rain" id="rain"></div>
+
+<!-- 🌸 Card -->
+<div class="card">
+  <!-- Pink/white kawaii kitty icon (inline SVG) -->
+  <img class="pfp" alt="profile"
+    src='data:image/svg+xml;utf8,
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="%23ffd6e7"/>
+      <stop offset="1" stop-color="%23fff3f8"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="100" fill="url(%23bg)"/>
+  <!-- ears -->
+  <path d="M55 70 C45 45, 65 35, 80 55" fill="%23ffffff" stroke="%23ff9fc1" stroke-width="6" stroke-linecap="round"/>
+  <path d="M145 70 C155 45, 135 35, 120 55" fill="%23ffffff" stroke="%23ff9fc1" stroke-width="6" stroke-linecap="round"/>
+  <!-- face -->
+  <ellipse cx="100" cy="112" rx="62" ry="56" fill="%23ffffff" stroke="%23ff9fc1" stroke-width="6"/>
+  <!-- eyes -->
+  <circle cx="78" cy="110" r="7" fill="%23333333"/>
+  <circle cx="122" cy="110" r="7" fill="%23333333"/>
+  <!-- nose -->
+  <path d="M100 118 L92 126 Q100 132 108 126 Z" fill="%23ff7aa8"/>
+  <!-- whiskers -->
+  <path d="M38 114 H65" stroke="%23ff9fc1" stroke-width="5" stroke-linecap="round"/>
+  <path d="M35 130 H66" stroke="%23ff9fc1" stroke-width="5" stroke-linecap="round"/>
+  <path d="M135 114 H162" stroke="%23ff9fc1" stroke-width="5" stroke-linecap="round"/>
+  <path d="M134 130 H165" stroke="%23ff9fc1" stroke-width="5" stroke-linecap="round"/>
+  <!-- bow -->
+  <circle cx="140" cy="86" r="10" fill="%23ff5fa1"/>
+  <path d="M140 86 C125 70, 115 92, 140 98 Z" fill="%23ff5fa1"/>
+  <path d="M140 86 C155 70, 165 92, 140 98 Z" fill="%23ff5fa1"/>
+</svg>' />
+
+  <div class="name">pawslyy</div>
+  <div class="spark">✦ ✧ ✦</div>
+
+  <div class="icons">
+    <a href="https://www.tiktok.com/@emmaviea" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+      <i class="fa-brands fa-tiktok"></i>
+    </a>
+
+    <a href="https://x.com/pawslyy" target="_blank" rel="noopener noreferrer" aria-label="X">
+      <i class="fa-brands fa-x-twitter"></i>
+    </a>
+
+    <a href="https://t.me/pawslyy" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+      <i class="fa-brands fa-telegram"></i>
+    </a>
+  </div>
+</div>
+
+<script>
+  // 🌧️ Cute rain maker
+  const rain = document.getElementById("rain");
+  const DROPS = 90;
+
+  for (let i = 0; i < DROPS; i++) {
+    const d = document.createElement("div");
+    d.className = "drop";
+
+    // positions + sizes
+    const left = Math.random() * 100; // vw
+    const size = 6 + Math.random() * 10; // px
+    const speed = 2.8 + Math.random() * 3.8; // seconds
+    const delay = Math.random() * 4; // seconds
+    const opacity = 0.18 + Math.random() * 0.35;
+
+    d.style.left = left + "vw";
+    d.style.width = (size * 0.65) + "px";
+    d.style.height = size + "px";
+    d.style.animationDuration = speed + "s";
+    d.style.animationDelay = (-delay) + "s";
+    d.style.opacity = opacity;
+
+    // tiny sideways drift
+    const drift = (Math.random() * 60 - 30); // px
+    d.animate(
+      [{ transform: "translate(0, 0)" }, { transform: `translate(${drift}px, 130vh)` }],
+      { duration: speed * 1000, iterations: Infinity, easing: "linear", delay: -delay * 1000 }
+    );
+
+    rain.appendChild(d);
+  }
+</script>
+
+</body>
+</html>
